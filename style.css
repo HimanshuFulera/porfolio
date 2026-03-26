@@ -307,10 +307,15 @@ body {
     transform: translateY(-10px);
 }
 
-.resume-dropdown:hover .dropdown-content {
+.resume-dropdown:hover .dropdown-content,
+.resume-dropdown.active .dropdown-content {
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
+}
+
+.resume-dropdown.active .nav-chevron {
+    transform: rotate(180deg);
 }
 
 .dropdown-content a {
