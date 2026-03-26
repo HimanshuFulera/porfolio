@@ -148,6 +148,42 @@ if (themeToggleBtn) {
     });
 }
 
+// Resume Dropdown Click Toggle for Mobile/Touch
+const resumeDropdownBtn = document.querySelector('.resume-btn');
+const resumeDropdown = document.querySelector('.resume-dropdown');
+
+if (resumeDropdownBtn && resumeDropdown) {
+    resumeDropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        resumeDropdown.classList.toggle('active');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', () => {
+        resumeDropdown.classList.remove('active');
+    });
+}
+
+// Download CV Without Page Navigation
+const downloadCvBtn = document.getElementById('download-cv-btn');
+if (downloadCvBtn) {
+    downloadCvBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const downloadUrl = downloadCvBtn.getAttribute('href');
+        
+        // Creating and using a hidden iframe for the download
+        const hiddenIframe = document.createElement('iframe');
+        hiddenIframe.style.display = 'none';
+        hiddenIframe.src = downloadUrl;
+        document.body.appendChild(hiddenIframe);
+        
+        // Cleanup after some time
+        setTimeout(() => {
+            document.body.removeChild(hiddenIframe);
+        }, 30000); // 30s to allow download initiation
+    });
+}
+
 // Certificate Modal Logic
 function openCertModal(imgSrc, title, issuer, date, verifyLink) {
     const modal = document.getElementById('certModal');
